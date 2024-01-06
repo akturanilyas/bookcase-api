@@ -24,13 +24,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akturanilyas/my-chat-api.git"
+    "url": "git+https://github.com/akturanilyas/bookcase-api.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akturanilyas/my-chat-api/issues"
+    "url": "https://github.com/akturanilyas/bookcase-api/issues"
   },
-  "homepage": "https://github.com/akturanilyas/my-chat-api#readme",
+  "homepage": "https://github.com/akturanilyas/bookcase-api#readme",
   "dependencies": {
     "class-validator": "0.14.0",
     "cors": "2.8.5",

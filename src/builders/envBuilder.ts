@@ -10,7 +10,6 @@ type IEnvironment = {
   username: string;
   password: string;
   database: string;
-  jwt_token: string;
   debugEnabled: boolean;
 };
 
@@ -21,7 +20,6 @@ const environment: IEnvironment = {
   username: process.env.DB_USERNAME!,
   password: process.env.DB_PASSWORD!,
   database: process.env.DATABASE!,
-  jwt_token: process.env.JWT!,
   debugEnabled: Boolean(process.env.DEBUG_ENABLED) || false,
 };
 

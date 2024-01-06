@@ -1,10 +1,11 @@
 import { DataSourceOptions } from 'typeorm/data-source/DataSourceOptions';
 import environment from '../builders/envBuilder';
+import { EnvironmentTypeEnum } from '../enums/environmentType.enum';
 
 const entities = {
-  development: ['src/models/**/*.ts'],
-  test: ['src/models/**/*.ts'],
-  production: ['dist/models/**/*.js'],
+  [EnvironmentTypeEnum.DEVELOPMENT]: ['src/models/**/*.ts'],
+  [EnvironmentTypeEnum.TEST]: ['src/models/**/*.ts'],
+  [EnvironmentTypeEnum.PRODUCTION]: ['dist/models/**/*.js'],
 };
 
 export const ormConfig: DataSourceOptions = {

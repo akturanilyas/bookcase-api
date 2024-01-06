@@ -8,14 +8,11 @@ import { DatabaseService } from './services/DatabaseService';
 export const databaseService: DatabaseService = new DatabaseService();
 
 export const logger = winston.createLogger({
-  // Log only if level is less than (meaning more severe) or equal to this
   level: 'info',
-  // Use timestamp and printf to create a standard log format
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`),
   ),
-  // Log to the console and a file
   transports: [
     new winston.transports.Console(),
     new winston.transports.File({ filename: 'logs/app.log' }),
@@ -25,13 +22,12 @@ export const logger = winston.createLogger({
 const httpServer = app
   .listen(environment.port, async () => {
     console.log(`listening on port ${environment.port}`);
-  }) //   Fix the Error EADDRINUSE
+  })
   .on('error', () => {
     process.once('SIGUSR2', () => {
       process.kill(process.pid, 'SIGUSR2');
     });
     process.on('SIGINT', () => {
-      // this is only called on ctrl+c, not restart
       process.kill(process.pid, 'SIGINT');
     });
     process.on('uncaughtException', err => {
@@ -41,7 +37,11 @@ const httpServer = app
   });
 
 (async () => {
-  if (environment.nodeEnv === EnvironmentTypeEnum.DEVELOPMENT) {
+  if (
+    [EnvironmentTypeEnum.DEVELOPMENT, EnvironmentTypeEnum.PRODUCTION].includes(
+      environment.nodeEnv as EnvironmentTypeEnum,
+    )
+  ) {
     await databaseService.initialize();
   }
 
