@@ -42,18 +42,18 @@ Install packages with yarn
 To run tests, run the following command
 
 ```bash
-yarn run test
+  yarn run test
 ```
 
 
-## Run Development
+## Run in Development
 
 ```bash
-yarn run dev
+  yarn run dev
 ```
 
-## Run Production
+## Run in Production
 
 ```bash
-yarn build && yarn start
+  yarn build && yarn start
 ```
