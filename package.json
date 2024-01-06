@@ -1,5 +1,5 @@
 {
-  "name": "bookcase-api",
+  "name": "library-api",
   "version": "0.0.0",
   "description": "API for basic bookcase application",
   "main": "src/app.ts",
@@ -24,13 +24,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akturanilyas/bookcase-api.git"
+    "url": "git+https://github.com/akturanilyas/library-api.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/akturanilyas/bookcase-api/issues"
+    "url": "https://github.com/akturanilyas/library-api/issues"
   },
-  "homepage": "https://github.com/akturanilyas/bookcase-api#readme",
+  "homepage": "https://github.com/akturanilyas/library-api#readme",
   "dependencies": {
     "class-validator": "0.14.0",
     "cors": "2.8.5",
