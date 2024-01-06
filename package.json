@@ -4,7 +4,7 @@
   "description": "API for basic chat application",
   "main": "src/app.ts",
   "scripts": {
-    "start": "tsc --build tsconfig.build.json && node build/app.js",
+    "start": "tsc --build tsconfig.build.json && ts-node -r tsconfig-paths/register ./src/server.ts",
     "tsc": "tsc",
     "tsc:watch": "tsc --build --watch tsconfig.json",
     "dev": "nodemon",

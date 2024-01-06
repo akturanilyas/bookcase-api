@@ -2,7 +2,6 @@ import * as console from 'console';
 import winston from 'winston';
 import environment from './builders/envBuilder';
 import { app } from './app';
-import jobs from './jobs';
 import { EnvironmentType } from './enums/environmentType';
 import { DatabaseService } from './services/DatabaseService';
 
@@ -47,7 +46,6 @@ const httpServer = app
   }
 
   await httpServer;
-  jobs();
 })();
 
 export default httpServer;
