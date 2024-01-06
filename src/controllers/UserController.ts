@@ -5,7 +5,6 @@ import HttpStatusCode from '../enums/httpStatus';
 import { UserCreateResource } from '../resources/user/UserCreateResource';
 import { UserIndexResource } from '../resources/user/UserIndexResource';
 import { UserShowResource } from '../resources/user/UserShowResource';
-import { UserNotFoundException } from '../exceptions/user/UserNotFoundException';
 
 export class UserController extends BaseController {
   private service: UserService;
@@ -29,14 +28,11 @@ export class UserController extends BaseController {
 
   public show = async (req: Request) => {
     const { userId } = req.params;
+
     const user = await this.service.getUser({
       params: { id: Number(userId) },
       relations: { books: { book: true } },
     });
-
-    if (!user) {
-      throw new UserNotFoundException();
-    }
 
     return new UserShowResource({ resource: user });
   };

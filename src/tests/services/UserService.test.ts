@@ -2,6 +2,7 @@ import { describe, expect } from '@jest/globals';
 import { User } from '../../models/User';
 import { UserService } from '../../services/UserService';
 import { matchArrayKeys } from '../../utils/testUtils';
+import { BookService } from '../../services/BookService';
 
 describe('UserService', () => {
   const user = {
@@ -31,5 +32,32 @@ describe('UserService', () => {
     expect(users).toBeInstanceOf(Array<User>);
     expect(users).toHaveLength(2);
     matchArrayKeys(users, ['id', 'name']);
+  });
+
+  it('Check show user method', async () => {
+    const book = await new BookService().createBook({ name: 'Book 1' });
+
+    const _user = await new UserService().createUser({
+      name: 'First name',
+    });
+
+    await new BookService().borrowBook({
+      user_id: _user.id,
+      book_id: book.id,
+    });
+
+    await new BookService().returnBook({
+      user_id: _user.id,
+      book_id: book.id,
+      score: 5,
+    });
+
+    const userResponse: User = await new UserService().getUser({
+      params: { id: _user.id },
+      relations: { books: true },
+    });
+
+    expect(userResponse).toBeInstanceOf(User);
+    expect(userResponse.books).toHaveLength(1);
   });
 });
