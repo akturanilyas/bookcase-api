@@ -1,5 +1,5 @@
 import { Schema } from 'express-validator';
-import { AbstractValidation } from './AbstractValidation';
+import { AbstractValidation } from './AbstractValidation.abstract';
 
 export class BookValidation extends AbstractValidation {
   public createBook = (): Schema => ({

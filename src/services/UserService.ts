@@ -1,11 +1,11 @@
 import { FindOptionsRelations } from 'typeorm/find-options/FindOptionsRelations';
-import { User } from '../models/User';
+import { UserModel } from '../models/User.model';
 import { GetUserParams, GetUsersParams, UserCreateParams } from './UserService.interface';
 import { UserNotFoundException } from '../exceptions/user/UserNotFoundException';
 
 export class UserService {
-  public createUser = async (params: UserCreateParams): Promise<User> => {
-    const user = User.create({ ...params });
+  public createUser = async (params: UserCreateParams): Promise<UserModel> => {
+    const user = UserModel.create({ ...params });
 
     await user.save();
 
@@ -17,9 +17,9 @@ export class UserService {
     relations,
   }: {
     params?: GetUsersParams;
-    relations?: FindOptionsRelations<User>;
-  }): Promise<Array<User>> => {
-    const users = await User.find({ where: { ...params }, relations });
+    relations?: FindOptionsRelations<UserModel>;
+  }): Promise<Array<UserModel>> => {
+    const users = await UserModel.find({ where: { ...params }, relations });
 
     return users;
   };
@@ -29,9 +29,9 @@ export class UserService {
     relations,
   }: {
     params?: GetUserParams;
-    relations?: FindOptionsRelations<User>;
-  }): Promise<User> => {
-    const user = await User.findOne({ where: { ...params }, relations });
+    relations?: FindOptionsRelations<UserModel>;
+  }): Promise<UserModel> => {
+    const user = await UserModel.findOne({ where: { ...params }, relations });
 
     if (!user) {
       throw new UserNotFoundException();

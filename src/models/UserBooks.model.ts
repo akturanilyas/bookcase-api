@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { AbstractModel } from './AbstractModel';
-import { User } from './User';
-import { Book } from './Book';
+import { UserModel } from './User.model';
+import { BookModel } from './Book.model';
 
 @Entity('user_books')
 export class UserBook extends AbstractModel {
@@ -20,15 +20,15 @@ export class UserBook extends AbstractModel {
   })
   score?: number;
 
-  @ManyToOne(() => User, user => user.books, {
+  @ManyToOne(() => UserModel, user => user.books, {
     createForeignKeyConstraints: false,
   })
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-  user: User;
+  user: UserModel;
 
-  @ManyToOne(() => Book, book => book.history, {
+  @ManyToOne(() => BookModel, book => book.history, {
     createForeignKeyConstraints: false,
   })
   @JoinColumn({ name: 'book_id', referencedColumnName: 'id' })
-  book: Book;
+  book: BookModel;
 }

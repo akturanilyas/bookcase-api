@@ -1,13 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import { Schema } from 'express-validator';
-import { HttpMethod } from '../enums/httpMethod';
-import { Middleware } from '../enums/middleware';
-import { AbstractResource } from '../resources/AbstractResource';
+import { HttpMethodEnum } from '../enums/httpMethod.enum';
+import { MiddlewareEnum } from '../enums/middleware.enum';
+import { AbstractResource } from '../resources/AbstractResource.abstract';
 
 export interface IRoute {
   path: string;
-  method: HttpMethod;
-  middlewares?: Array<Middleware>;
+  method: HttpMethodEnum;
+  middlewares?: Array<MiddlewareEnum>;
   validate?: Schema;
   handler: (req: Request, res: Response, next: NextFunction) => Promise<AbstractResource>;
 }

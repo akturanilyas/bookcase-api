@@ -1,10 +1,10 @@
 import { Request } from 'express';
-import BaseController from './BaseController';
 import { UserService } from '../services/UserService';
-import HttpStatusCode from '../enums/httpStatus';
 import { UserCreateResource } from '../resources/user/UserCreateResource';
 import { UserIndexResource } from '../resources/user/UserIndexResource';
 import { UserShowResource } from '../resources/user/UserShowResource';
+import HttpStatusCode from '../enums/httpStatus.enum';
+import BaseController from './BaseController.abstract';
 
 export class UserController extends BaseController {
   private service: UserService;

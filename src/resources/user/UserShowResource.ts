@@ -1,10 +1,10 @@
-import { AbstractResource } from '../AbstractResource';
-import { User } from '../../models/User';
-import { UserBook } from '../../models/UserBooks';
+import { AbstractResource } from '../AbstractResource.abstract';
+import { UserModel } from '../../models/User.model';
+import { UserBook } from '../../models/UserBooks.model';
 
 export class UserShowResource extends AbstractResource {
   public toJson(resource: object): object {
-    const user = resource as User;
+    const user = resource as UserModel;
 
     return {
       id: user.id,

@@ -3,15 +3,15 @@ import { checkSchema } from 'express-validator';
 import * as fs from 'fs';
 import { map } from 'lodash';
 import path from 'path';
-import { Middleware } from '../enums/middleware';
+import { MiddlewareEnum } from '../enums/middleware.enum';
 import { IRoute } from '../routes/IRoute.interface';
-import { AbstractResource } from '../resources/AbstractResource';
 import { databaseService, logger } from '../server';
+import { AbstractResource } from '../resources/AbstractResource.abstract';
 
 const controllerDir = path.join(__dirname, '../routes');
 const middlewaresDir = path.join(__dirname, '../middlewares');
 
-const getMiddlewares = async (middlewares: Array<Middleware>) => {
+const getMiddlewares = async (middlewares: Array<MiddlewareEnum>) => {
   const functions: Array<() => void> = [];
   for (const fileName of middlewares) {
     const { [fileName]: middleware } = await import(`${middlewaresDir}/${fileName}`);

@@ -6,18 +6,18 @@ import {
   GetBooksParams,
   ReturnBookParams,
 } from './BookService.interface';
-import { Book } from '../models/Book';
-import { UserBook } from '../models/UserBooks';
+import { BookModel } from '../models/Book.model';
 import { BookNotFoundException } from '../exceptions/book/BookNotFoundException';
 import { UserBookNotFoundException } from '../exceptions/book/UserBookNotFoundException';
 import { UserService } from './UserService';
 import { BookAlreadyReturnedException } from '../exceptions/book/BookAlreadyReturnedException';
 import { databaseService } from '../server';
 import { BookAlreadyBorrowedException } from '../exceptions/book/BookAlreadyBorrowedException';
+import { UserBook } from '../models/UserBooks.model';
 
 export class BookService {
-  public createBook = async (params: BookCreateParams): Promise<Book> => {
-    const book = Book.create({ ...params });
+  public createBook = async (params: BookCreateParams): Promise<BookModel> => {
+    const book = BookModel.create({ ...params });
 
     await book.save();
 
@@ -29,9 +29,9 @@ export class BookService {
     relations,
   }: {
     params?: GetBooksParams;
-    relations?: FindOptionsRelations<Book>;
-  }): Promise<Array<Book>> => {
-    const books = Book.find({ where: params, relations });
+    relations?: FindOptionsRelations<BookModel>;
+  }): Promise<Array<BookModel>> => {
+    const books = BookModel.find({ where: params, relations });
 
     return books;
   };
@@ -41,9 +41,9 @@ export class BookService {
     relations,
   }: {
     params: GetBookParams;
-    relations?: FindOptionsRelations<Book>;
-  }): Promise<Book> => {
-    const book = await Book.findOne({ where: params, relations });
+    relations?: FindOptionsRelations<BookModel>;
+  }): Promise<BookModel> => {
+    const book = await BookModel.findOne({ where: params, relations });
 
     if (!book) {
       throw new BookNotFoundException();

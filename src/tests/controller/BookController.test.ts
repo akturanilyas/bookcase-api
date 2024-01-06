@@ -5,10 +5,10 @@ import {
   matchObjectKeys,
   postRequest,
 } from '../../utils/testUtils';
-import HttpStatusCode from '../../enums/httpStatus';
 import { ENDPOINT } from '../../constants/endpoint.constant';
 import { BookService } from '../../services/BookService';
 import { UserService } from '../../services/UserService';
+import HttpStatusCode from '../../enums/httpStatus.enum';
 
 describe('BookController', () => {
   it('check book create endpoint', async () => {

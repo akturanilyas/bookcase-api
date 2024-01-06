@@ -2,7 +2,7 @@ import * as console from 'console';
 import winston from 'winston';
 import environment from './builders/envBuilder';
 import { app } from './app';
-import { EnvironmentType } from './enums/environmentType';
+import { EnvironmentTypeEnum } from './enums/environmentType.enum';
 import { DatabaseService } from './services/DatabaseService';
 
 export const databaseService: DatabaseService = new DatabaseService();
@@ -41,7 +41,7 @@ const httpServer = app
   });
 
 (async () => {
-  if (environment.nodeEnv === EnvironmentType.DEVELOPMENT) {
+  if (environment.nodeEnv === EnvironmentTypeEnum.DEVELOPMENT) {
     await databaseService.initialize();
   }
 

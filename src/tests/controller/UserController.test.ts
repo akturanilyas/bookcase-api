@@ -6,9 +6,9 @@ import {
   matchObjectKeys,
   postRequest,
 } from '../../utils/testUtils';
-import HttpStatusCode from '../../enums/httpStatus';
 import { BookService } from '../../services/BookService';
 import { UserService } from '../../services/UserService';
+import HttpStatusCode from '../../enums/httpStatus.enum';
 
 describe('UserController', () => {
   it('check user create endpoint', async () => {

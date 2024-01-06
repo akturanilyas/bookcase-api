@@ -1,14 +1,14 @@
 import { describe, expect } from '@jest/globals';
 import { BookService } from '../../services/BookService';
-import { Book } from '../../models/Book';
+import { BookModel } from '../../models/Book.model';
 import { matchArrayKeys, matchObjectKeys } from '../../utils/testUtils';
 import { UserService } from '../../services/UserService';
 
 describe('BookService', () => {
   it('Check create book method', async () => {
-    const res: Book | null = await new BookService().createBook({ name: 'Book 1' });
+    const res: BookModel | null = await new BookService().createBook({ name: 'Book 1' });
 
-    expect(res).toBeInstanceOf(Book);
+    expect(res).toBeInstanceOf(BookModel);
     matchObjectKeys(res, ['id', 'name']);
   });
 
@@ -19,7 +19,7 @@ describe('BookService', () => {
 
     const books = await new BookService().getBooks({});
 
-    expect(books).toBeInstanceOf(Array<Book>);
+    expect(books).toBeInstanceOf(Array<BookModel>);
     expect(books).toHaveLength(3);
     matchArrayKeys(books, ['id', 'name']);
   });

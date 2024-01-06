@@ -1,12 +1,12 @@
 import { Request } from 'express';
-import BaseController from './BaseController';
 import { BookService } from '../services/BookService';
-import HttpStatusCode from '../enums/httpStatus';
 import { BookIndexResource } from '../resources/book/BookIndexResource';
 import { BookCreateResource } from '../resources/book/BookCreateResource';
 import { BorrowBookResource } from '../resources/book/BorrowBookResource';
 import { ReturnBookResource } from '../resources/book/ReturnBookResource';
 import { BookShowResource } from '../resources/book/BookShowResource';
+import HttpStatusCode from '../enums/httpStatus.enum';
+import BaseController from './BaseController.abstract';
 
 export class BookController extends BaseController {
   private service: BookService;

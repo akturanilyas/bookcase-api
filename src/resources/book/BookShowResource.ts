@@ -1,9 +1,9 @@
-import { AbstractResource } from '../AbstractResource';
-import { Book } from '../../models/Book';
+import { BookModel } from '../../models/Book.model';
+import { AbstractResource } from '../AbstractResource.abstract';
 
 export class BookShowResource extends AbstractResource {
   public toJson(resource: object): object {
-    const book = resource as Book;
+    const book = resource as BookModel;
 
     return {
       id: book.id,
