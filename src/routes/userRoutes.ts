@@ -3,7 +3,6 @@ import { UserController } from '../controllers/UserController';
 import { HttpMethod } from '../enums/httpMethod';
 import { UserValidation } from '../validations/UserValidation';
 import { ENDPOINT } from '../constants/endpoint.constant';
-import { Middleware } from '../enums/middleware';
 
 const userController = new UserController();
 const userValidation = new UserValidation();

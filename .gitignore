@@ -130,3 +130,4 @@ dist
 
 # Ide files
 .idea
+.idea/*

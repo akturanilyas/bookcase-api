@@ -1,7 +1,7 @@
 {
-  "name": "my-chat-api",
+  "name": "bookcase-api",
   "version": "0.0.0",
-  "description": "API for basic chat application",
+  "description": "API for basic bookcase application",
   "main": "src/app.ts",
   "scripts": {
     "start": "tsc --build tsconfig.build.json && ts-node -r tsconfig-paths/register ./src/server.ts",

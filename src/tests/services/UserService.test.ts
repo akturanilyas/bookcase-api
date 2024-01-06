@@ -1,7 +1,7 @@
 import { describe, expect } from '@jest/globals';
 import { User } from '../../models/User';
 import { UserService } from '../../services/UserService';
-import { matchArrayKeys, matchObjectKeys } from '../../utils/testUtils';
+import { matchArrayKeys } from '../../utils/testUtils';
 
 describe('UserService', () => {
   const user = {
