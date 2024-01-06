@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "baseUrl": "./src",
+    "module": "NodeNext",
+    "target": "ES6",
+    "lib": [
+      "ESNext"
+    ],
+    "outDir": "build",
+    "strict": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "strictPropertyInitialization": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "compileOnSave": true,
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "*.d.ts",
+    "node_modules",
+    "./node_modules",
+    "./node_modules/**"
+  ]
+}
