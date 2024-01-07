@@ -1,10 +1,11 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { IsInt, Max, Min } from 'class-validator';
 import { AbstractModel } from './AbstractModel';
 import { UserModel } from './User.model';
 import { BookModel } from './Book.model';
 
 @Entity('user_books')
+@Index(['user_id', 'book_id'])
 export class UserBook extends AbstractModel {
   @Column({ type: 'bigint' })
   user_id: number;

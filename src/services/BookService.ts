@@ -11,7 +11,6 @@ import { BookModel } from '../models/Book.model';
 import { BookNotFoundException } from '../exceptions/book/BookNotFoundException';
 import { UserBookNotFoundException } from '../exceptions/book/UserBookNotFoundException';
 import { UserService } from './UserService';
-import { BookAlreadyReturnedException } from '../exceptions/book/BookAlreadyReturnedException';
 import { databaseService } from '../server';
 import { BookAlreadyBorrowedException } from '../exceptions/book/BookAlreadyBorrowedException';
 import { UserBook } from '../models/UserBooks.model';
@@ -88,15 +87,11 @@ export class BookService {
     book_id: number;
   }): Promise<UserBook> => {
     const userBook = await UserBook.findOne({
-      where: { book_id, user_id },
-      order: { id: 'desc' },
+      where: { book_id, user_id, delivery_date: IsNull() },
     });
+
     if (!userBook) {
       throw new UserBookNotFoundException();
-    }
-
-    if (userBook.delivery_date) {
-      throw new BookAlreadyReturnedException();
     }
 
     return userBook;

@@ -7,6 +7,7 @@ export class UserValidation extends AbstractValidation {
       isString: true,
       notEmpty: true,
       errorMessage: 'Provide valid name.',
+      isLength: { options: { max: 200 } },
     },
   });
 

@@ -123,8 +123,8 @@ describe('BookController', () => {
       path: `${ENDPOINT.USERS}/${user.id}${ENDPOINT.RETURN}/${book.id}`,
     });
 
-    expect(res.statusCode).toBe(HttpStatusCode.CONFLICT);
-    expect(res.body.message).toBe('Book already returned.');
+    expect(res.statusCode).toBe(HttpStatusCode.NOT_FOUND);
+    expect(res.body.message).toBe('User book not found');
   });
 
   it('check UserBookNotFoundException', async () => {
