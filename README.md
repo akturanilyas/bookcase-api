@@ -61,6 +61,7 @@ To run tests, run the following command
   yarn build && yarn start
 ```
 
+## Used libraries-technologies
 - `class-validator`
 - `express`
 - `express-validator`
