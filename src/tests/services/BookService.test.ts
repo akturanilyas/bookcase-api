@@ -76,15 +76,15 @@ describe('BookService', () => {
       book_id: book.id,
     });
 
-    await new BookService().borrowBook({
-      user_id: user2.id,
-      book_id: book.id,
-    });
-
     await new BookService().returnBook({
       user_id: user.id,
       book_id: book.id,
       score: 5,
+    });
+
+    await new BookService().borrowBook({
+      user_id: user2.id,
+      book_id: book.id,
     });
 
     await new BookService().returnBook({

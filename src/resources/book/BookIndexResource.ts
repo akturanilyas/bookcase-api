@@ -1,9 +1,9 @@
 import { BookModel } from '../../models/Book.model';
 import { AbstractResource } from '../AbstractResource.abstract';
 
-export class BookIndexResource extends AbstractResource {
-  public toJson(resource: object): object {
-    const books = resource as Array<BookModel>;
+export class BookIndexResource extends AbstractResource<Array<BookModel>> {
+  public toJson(): object {
+    const books = this.resource;
 
     return books.map(book => ({
       id: book.id,

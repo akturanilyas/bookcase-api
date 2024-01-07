@@ -1,9 +1,11 @@
-export abstract class AbstractResource {
+export abstract class AbstractResource<T> {
   public statusCode: number;
 
   public message: string;
 
-  public data?: object;
+  public data?: object | null;
+
+  public resource: T;
 
   public constructor({
     statusCode,
@@ -12,14 +14,15 @@ export abstract class AbstractResource {
   }: {
     statusCode?: number;
     message?: string;
-    resource?: object;
+    resource?: T;
   }) {
-    this.data = this.toJson(resource || {}) || {};
+    if (resource) {
+      this.resource = resource;
+    }
+    this.data = resource ? this.toJson() : {};
     this.statusCode = statusCode || 200;
     this.message = message || '';
   }
 
-  public abstract toJson(resource: object): object | null;
-
-  private toArray = (obj: object): Array<string> => Object.keys(obj).map(k => obj[k]);
+  public abstract toJson(): object | null;
 }

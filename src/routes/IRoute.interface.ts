@@ -9,5 +9,9 @@ export interface IRoute {
   method: HttpMethodEnum;
   middlewares?: Array<MiddlewareEnum>;
   validate?: Schema;
-  handler: (req: Request, res: Response, next: NextFunction) => Promise<AbstractResource>;
+  handler: (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) => Promise<AbstractResource<unknown>>;
 }

@@ -123,7 +123,6 @@ describe('BookController', () => {
 
     await postRequest({
       path: `${ENDPOINT.USERS}/${user.id}${ENDPOINT.BORROW}/${book.id}`,
-      body: {},
     });
 
     const res = await postRequest({
@@ -133,5 +132,51 @@ describe('BookController', () => {
 
     expect(res.statusCode).toBe(HttpStatusCode.CONFLICT);
     expect(res.body.message).toBe('Book already borrowed.');
+  });
+
+  it('check throw exception when taken book want to take again', async () => {
+    const user = await new UserService().createUser({
+      name: 'First name',
+    });
+
+    const user2 = await new UserService().createUser({
+      name: 'Second User',
+    });
+
+    const book = await new BookService().createBook({ name: 'Book 1' });
+
+    await postRequest({
+      path: `${ENDPOINT.USERS}/${user.id}${ENDPOINT.BORROW}/${book.id}`,
+    });
+
+    const res = await postRequest({
+      path: `${ENDPOINT.USERS}/${user2.id}${ENDPOINT.BORROW}/${book.id}`,
+    });
+
+    expect(res.statusCode).toBe(HttpStatusCode.CONFLICT);
+    expect(res.body.message).toBe('Book already borrowed.');
+  });
+
+  it('check borrowed and returned book take again case', async () => {
+    const user = await new UserService().createUser({
+      name: 'First name',
+    });
+
+    const book = await new BookService().createBook({ name: 'Book 1' });
+
+    await postRequest({
+      path: `${ENDPOINT.USERS}/${user.id}${ENDPOINT.BORROW}/${book.id}`,
+    });
+
+    await postRequest({
+      path: `${ENDPOINT.USERS}/${user.id}${ENDPOINT.RETURN}/${book.id}`,
+    });
+
+    const res = await postRequest({
+      path: `${ENDPOINT.USERS}/${user.id}${ENDPOINT.BORROW}/${book.id}`,
+    });
+
+    expect(res.statusCode).toBe(HttpStatusCode.CREATED);
+    matchObjectKeys(res.body, ['book_id', 'score', 'user_id']);
   });
 });

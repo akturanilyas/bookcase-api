@@ -1,13 +1,11 @@
 import { UserModel } from '../../models/User.model';
 import { AbstractResource } from '../AbstractResource.abstract';
 
-export class UserCreateResource extends AbstractResource {
-  public toJson(resource: object): object {
-    const user = resource as UserModel;
-
+export class UserCreateResource extends AbstractResource<UserModel> {
+  public toJson(): object {
     return {
-      id: user.id,
-      name: user.name,
+      id: this.resource.id,
+      name: this.resource.name,
     };
   }
 }

@@ -1,4 +1,5 @@
 import { FindOptionsRelations } from 'typeorm/find-options/FindOptionsRelations';
+import { IsNull } from 'typeorm';
 import {
   BookCreateParams,
   BorrowBookParams,
@@ -56,7 +57,7 @@ export class BookService {
     const { book_id, user_id } = params;
 
     await this.checkUserAndBookIsExists({ user_id, book_id });
-    await this.checkBookIsBorrowable({ user_id, book_id });
+    await this.checkBookIsBorrowable({ book_id });
 
     const userBook = await UserBook.create({ book_id, user_id }).save();
 
@@ -130,14 +131,10 @@ export class BookService {
     await book.save({ reload: true });
   };
 
-  private checkBookIsBorrowable = async ({
-    user_id,
-    book_id,
-  }: {
-    user_id: number;
-    book_id: number;
-  }) => {
-    const userBook = await UserBook.findOne({ where: { book_id, user_id } });
+  private checkBookIsBorrowable = async ({ book_id }: { book_id: number }) => {
+    const userBook = await UserBook.findOne({
+      where: { book_id, delivery_date: IsNull() },
+    });
 
     if (userBook) {
       throw new BookAlreadyBorrowedException();

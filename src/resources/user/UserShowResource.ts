@@ -2,9 +2,9 @@ import { AbstractResource } from '../AbstractResource.abstract';
 import { UserModel } from '../../models/User.model';
 import { UserBook } from '../../models/UserBooks.model';
 
-export class UserShowResource extends AbstractResource {
-  public toJson(resource: object): object {
-    const user = resource as UserModel;
+export class UserShowResource extends AbstractResource<UserModel> {
+  public toJson(): object {
+    const user = this.resource;
 
     return {
       id: user.id,
