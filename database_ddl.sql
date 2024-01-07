@@ -1,0 +1,36 @@
+CREATE TABLE user_books
+(
+    id            INT AUTO_INCREMENT
+        PRIMARY KEY,
+    created_at    DATETIME(6) DEFAULT CURRENT_TIMESTAMP (6) NOT NULL,
+    updated_at    DATETIME(6) DEFAULT CURRENT_TIMESTAMP (6) NOT NULL ON UPDATE CURRENT_TIMESTAMP (6),
+    deleted_at    DATETIME(6) NULL,
+    user_id       INT NOT NULL,
+    book_id       INT NOT NULL,
+    delivery_date DATETIME NULL,
+    score         INT NULL
+);
+
+CREATE INDEX idx_0277019e457282207ac281581d
+    ON user_books (user_id, book_id);
+
+CREATE TABLE books
+(
+    id         INT AUTO_INCREMENT
+        PRIMARY KEY,
+    created_at DATETIME(6) DEFAULT CURRENT_TIMESTAMP (6) NOT NULL,
+    updated_at DATETIME(6) DEFAULT CURRENT_TIMESTAMP (6) NOT NULL ON UPDATE CURRENT_TIMESTAMP (6),
+    deleted_at DATETIME(6) NULL,
+    name       VARCHAR(200)     NOT NULL,
+    score      FLOAT DEFAULT -1 NOT NULL
+);
+
+CREATE TABLE users
+(
+    id         INT AUTO_INCREMENT
+        PRIMARY KEY,
+    created_at DATETIME(6) DEFAULT CURRENT_TIMESTAMP (6) NOT NULL,
+    updated_at DATETIME(6) DEFAULT CURRENT_TIMESTAMP (6) NOT NULL ON UPDATE CURRENT_TIMESTAMP (6),
+    deleted_at DATETIME(6) NULL,
+    name       VARCHAR(200) NOT NULL
+);
