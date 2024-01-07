@@ -29,6 +29,10 @@ DATABASE='test'
 DEBUG_ENABLED=false
 ```
 
+## Dependencies
+- yarn 
+- Node 18 (18.15 preferable) 
+- MySQL 8 
 
 Install packages with yarn
 
