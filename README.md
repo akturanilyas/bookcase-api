@@ -27,7 +27,6 @@ DB_USERNAME='root'
 DB_PASSWORD=''
 DATABASE='test'
 DEBUG_ENABLED=false
-JWT=file
 ```
 
 
@@ -57,3 +56,18 @@ To run tests, run the following command
 ```bash
   yarn build && yarn start
 ```
+
+- `class-validator`
+- `express`
+- `express-validator`
+- `lodash`
+- `moment`
+- `mysql`
+- `typeorm`
+- `winston`
+- `husky`
+- `eslint`
+- `prettier`
+- `supertest`
+- `nodemon`
+- `sqlite3`
