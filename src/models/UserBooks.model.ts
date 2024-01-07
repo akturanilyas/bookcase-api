@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { IsInt, Max, Min } from 'class-validator';
 import { AbstractModel } from './AbstractModel';
 import { UserModel } from './User.model';
 import { BookModel } from './Book.model';
@@ -14,6 +15,9 @@ export class UserBook extends AbstractModel {
   @Column({ type: 'datetime', nullable: true })
   delivery_date: Date;
 
+  @IsInt()
+  @Min(0)
+  @Max(10)
   @Column({
     type: 'int',
     nullable: true,
