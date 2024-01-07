@@ -67,6 +67,34 @@ describe('BookController', () => {
     expect(res.statusCode).toBe(HttpStatusCode.OK);
   });
 
+  it('check show book endpoint', async () => {
+    const userService = new UserService();
+    const bookService = new BookService();
+
+    const book = await bookService.createBook({ name: 'Book 1' });
+    const user = await userService.createUser({
+      name: 'First name',
+    });
+
+    await bookService.borrowBook({
+      user_id: user.id,
+      book_id: book.id,
+    });
+
+    await bookService.returnBook({
+      user_id: user.id,
+      book_id: book.id,
+      score: 8,
+    });
+
+    const res = await getRequest({
+      path: `${ENDPOINT.BOOKS}/${book.id}`,
+    });
+
+    expect(res.statusCode).toBe(HttpStatusCode.OK);
+    expect(res.body).toMatchObject({ name: 'Book 1', score: 8 });
+  });
+
   it('check not found exception', async () => {
     const res = await getRequest({
       path: `${ENDPOINT.BOOKS}/1`,
