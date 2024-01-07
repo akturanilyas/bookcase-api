@@ -12,7 +12,7 @@ export class UserValidation extends AbstractValidation {
 
   public showUserValidation = (): Schema => ({
     userId: {
-      isString: true,
+      isNumeric: true,
       notEmpty: true,
       errorMessage: 'Provide valid user id.',
     },

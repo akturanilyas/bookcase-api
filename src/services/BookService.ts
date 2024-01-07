@@ -87,7 +87,10 @@ export class BookService {
     user_id: number;
     book_id: number;
   }): Promise<UserBook> => {
-    const userBook = await UserBook.findOne({ where: { book_id, user_id } });
+    const userBook = await UserBook.findOne({
+      where: { book_id, user_id },
+      order: { id: 'desc' },
+    });
     if (!userBook) {
       throw new UserBookNotFoundException();
     }

@@ -14,7 +14,6 @@ export class DatabaseService {
     try {
       this.source = new DataSource(testOrmConfig);
       await this.source.initialize();
-      console.log(`In memory Db initialized`);
     } catch (err) {
       console.error(`Error: ${(err as Error).message}`);
     }

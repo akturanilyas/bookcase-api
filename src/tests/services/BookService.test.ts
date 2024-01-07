@@ -99,4 +99,37 @@ describe('BookService', () => {
 
     expect(book.score).toBe(6.5);
   });
+
+  it('check user take book 2 times', async () => {
+    const book = await new BookService().createBook({ name: 'Book 1' });
+    const user = await new UserService().createUser({
+      name: 'First name',
+    });
+
+    await new BookService().borrowBook({
+      user_id: user.id,
+      book_id: book.id,
+    });
+
+    await new BookService().returnBook({
+      user_id: user.id,
+      book_id: book.id,
+      score: 5,
+    });
+
+    await new BookService().borrowBook({
+      user_id: user.id,
+      book_id: book.id,
+    });
+
+    await new BookService().returnBook({
+      user_id: user.id,
+      book_id: book.id,
+      score: 8,
+    });
+
+    const result = await BookModel.findOne({ where: { id: book.id } });
+
+    expect(result?.score).toBe(6.5);
+  });
 });

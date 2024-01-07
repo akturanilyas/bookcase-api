@@ -13,10 +13,7 @@ export const logger = winston.createLogger({
     winston.format.timestamp(),
     winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`),
   ),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: 'logs/app.log' }),
-  ],
+  transports: [new winston.transports.File({ filename: 'logs/app.log' })],
 });
 
 const httpServer = app

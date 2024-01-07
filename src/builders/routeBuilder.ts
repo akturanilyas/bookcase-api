@@ -76,8 +76,6 @@ const buildController = async (app: Express) => {
 
         params.push(methodFunction);
 
-        console.log(route.path);
-
         app[route.method as string](...params);
       }
     }

@@ -12,31 +12,32 @@ export class BookValidation extends AbstractValidation {
   public borrowBook = (): Schema => ({
     userId: {
       notEmpty: true,
-      isString: true,
+      isNumeric: true,
     },
     bookId: {
       notEmpty: true,
-      isString: true,
+      isNumeric: true,
     },
   });
   public returnBook = (): Schema => ({
     userId: {
       notEmpty: true,
-      isString: true,
+      isNumeric: true,
     },
     bookId: {
       notEmpty: true,
-      isString: true,
+      isNumeric: true,
     },
     score: {
       isNumeric: true,
       optional: true,
+      isInt: { options: { max: 10, min: 0 } },
     },
   });
   public showBook = (): Schema => ({
     bookId: {
       notEmpty: true,
-      isString: true,
+      isNumeric: true,
     },
   });
 }
